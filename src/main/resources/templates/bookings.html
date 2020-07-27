@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Манипуляции</title>
+</head>
+<body>
+<p><b>Навигация</b></p>
+<p><a href="/">Корень</a></p>
+<p><a href="users.html">Участники</a></p>
+<p><a href="rooms.html">Помещения</a></p>
+<hr>
+<form action="/bookings/add" method="post">
+    <p><b>Добавление новой манипуляции</b></p>
+    <label>
+        Название:
+        <input type="text" name="name">
+    </label>
+    <br>
+    <label>
+        Описание:
+        <input type="text" name="description">
+    </label>
+    <br>
+    <label>
+        Дата/Время начала:
+        <input type="datetime-local" name="startDateTime">
+    </label>
+    <br>
+    <label>
+        Дата/Время конца:
+        <input type="datetime-local" name="endDateTime">
+    </label>
+    <br>
+    <label>
+        Id участника:
+        <input type="number" name="userId">
+    </label>
+    <br>
+    <label>
+        Id помещения:
+        <input type="number" name="roomId">
+    </label>
+    <p><input type="submit" value="Добавить"></p>
+</form>
+<hr>
+<form action="/bookings/delete" method="post">
+    <p><b>Удаление существующей манипуляции (закончить бронирование досрочно)</b></p>
+    <label>
+        Id манипуляции:
+        <input type="number" name="id">
+    </label>
+    <p><input type="submit" value="Удалить"></p>
+</form>
+<hr>
+<p><b>Существующие манипуляции</b></p>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Название</th>
+        <th>Описание</th>
+        <th>Дата/Время начала</th>
+        <th>Дата/Время конца</th>
+        <th>Id участника</th>
+        <th>Id помещения</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="booking : ${bookings}">
+        <td><span th:text="${booking.id}"></span></td>
+        <td><span th:text="${booking.name}"></span></td>
+        <td><span th:text="${booking.description}"></span></td>
+        <td><span th:text="${booking.startDateTime}"></span></td>
+        <td><span th:text="${booking.endDateTime}"></span></td>
+        <td><span th:text="${booking.user.id}"></span></td>
+        <td><span th:text="${booking.room.id}"></span></td>
+    </tr>
+    </tbody>
+</table>
+<hr>
+</body>
+</html>

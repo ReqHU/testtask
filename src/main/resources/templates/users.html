@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Участники</title>
+</head>
+<body>
+<p><b>Навигация</b></p>
+<p><a href="/">Корень</a></p>
+<p><a href="rooms.html">Помещения</a></p>
+<p><a href="bookings.html">Манипуляции</a></p>
+<hr>
+<form action="/users/add" method="post">
+    <p><b>Добавление нового участника</b></p>
+    <label>
+        Имя участника (врач/медсестра/и т.д.):
+        <input type="text" name="name">
+    </label>
+    <p><input type="submit" value="Добавить"></p>
+</form>
+<hr>
+<p><b>Существующие участники</b></p>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Имя</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="user : ${users}">
+            <td><span th:text="${user.id}"></span></td>
+            <td><span th:text="${user.name}"></span></td>
+        </tr>
+    </tbody>
+</table>
+<hr>
+</body>
+</html>

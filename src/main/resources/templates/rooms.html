@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Помещения</title>
+</head>
+<body>
+<p><b>Навигация</b></p>
+<p><a href="/">Корень</a></p>
+<p><a href="users.html">Участники</a></p>
+<p><a href="bookings.html">Манипуляции</a></p>
+<hr>
+<form action="/rooms/add" method="post">
+    <p><b>Добавление нового помещения</b></p>
+    <label>
+        Тип помещения:
+        <input type="text" name="type">
+    </label>
+    <p><input type="submit" value="Добавить"></p>
+</form>
+<hr>
+<p><b>Существующие помещения</b></p>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Тип</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="room : ${rooms}">
+        <td><span th:text="${room.id}"></span></td>
+        <td><span th:text="${room.type}"></span></td>
+    </tr>
+    </tbody>
+</table>
+<hr>
+</body>
+</html>
